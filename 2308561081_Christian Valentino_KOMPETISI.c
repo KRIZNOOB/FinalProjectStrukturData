@@ -1,0 +1,59 @@
+// NAMA  : CHRISTIAN VALENTINO
+// NIM   : 2308561081
+// KELAS : C
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct
+{
+    char Nama[30];
+    char noPeserta[11];
+    float Teori;
+    float Praktek;
+    int totalNilai;
+    float rataRata;
+}peserta;
+
+int main()
+{
+    system("cls");
+    int n;
+
+    printf("Ketik Data Peserta Kompetisi :\n");
+    printf("Masukkan Jumlah Peserta : ");
+    scanf("%d", &n);
+    getchar();
+
+    peserta peserta[n];
+
+    for(int i = 0; i < n; i++)
+    {
+        printf("\nNo Peserta : ");
+        fgets(peserta[i].noPeserta, sizeof(peserta[i].noPeserta), stdin);
+        peserta[i].noPeserta[strcspn(peserta[i].noPeserta, "\n")] = 0;
+        printf("Nama : ");
+        fgets(peserta[i].Nama, sizeof(peserta[i].Nama), stdin);
+        peserta[i].Nama[strcspn(peserta[i].Nama, "\n")] = 0;
+        printf("Nilai Teori : ");
+        scanf("%f", &peserta[i].Teori);
+        printf("Nilai Praktek : ");
+        scanf("%f", &peserta[i].Praktek);
+        getchar();
+        peserta[i].totalNilai = peserta[i].Teori + peserta[i].Praktek ;
+        printf("Total Nilai : %d\n", peserta[i].totalNilai);
+        peserta[i].rataRata = peserta[i].totalNilai / 2.0;
+        printf("Rata-rata : %.2f\n", peserta[i].rataRata);
+
+        printf("Status : ");
+        if(peserta[i].rataRata >= 60){
+            printf("Lulus\n");
+        } else{
+            printf("Gagal\n");
+        }
+
+    }
+
+    return 0;
+}
